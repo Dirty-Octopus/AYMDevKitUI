@@ -40,8 +40,18 @@ test("real pointer reaches curved buttons, embedded settings, input and slider",
     const { lensDisplayPoint: l } = await import("/src/vendor/crt.js");
     const r = el.getBoundingClientRect();
     return [
-      l(r.x + r.width * 0.5, r.y + r.height / 2, innerWidth, innerHeight),
-      l(r.x + r.width * 0.8, r.y + r.height / 2, innerWidth, innerHeight),
+      l(
+        r.x + 12 + (r.width - 24) * 0.5,
+        r.y + r.height / 2,
+        innerWidth,
+        innerHeight,
+      ),
+      l(
+        r.x + 12 + (r.width - 24) * 0.8,
+        r.y + r.height / 2,
+        innerWidth,
+        innerHeight,
+      ),
     ];
   });
   await page.mouse.move(points[0].x, points[0].y);
@@ -190,7 +200,7 @@ test("entry uses source assembly without a second ASCII pass; real audio plays o
   expect(await page.evaluate(() => window.__scrambles)).toBe(0);
 });
 
-test("language alone scrambles without changing layout; appearance follows system with explicit overrides", async ({
+test("language scrambles with fitted action backgrounds and stable structural layout; appearance follows system with explicit overrides", async ({
   page,
 }) => {
   await page.emulateMedia({ colorScheme: "dark" });
@@ -206,7 +216,11 @@ test("language alone scrambles without changing layout; appearance follows syste
           "#site button,#site p[data-zh],#system-dialog button,#system-dialog label,#system-dialog h3",
         ),
       ]
-        .filter((el) => el.getClientRects().length)
+        .filter(
+          (el) =>
+            el.getClientRects().length &&
+            !el.hasAttribute("data-language-sized"),
+        )
         .map((el) => {
           const r = el.getBoundingClientRect();
           return {
@@ -226,6 +240,16 @@ test("language alone scrambles without changing layout; appearance follows syste
           };
         }),
     );
+  const action = page.locator('[data-goto="components"]');
+  const chineseWidth = await action.evaluate(
+    (el) => el.getBoundingClientRect().width,
+  );
+  await expect(page.locator(".hero > .lead")).toHaveCSS(
+    "background-color",
+    "rgba(0, 0, 0, 0)",
+  );
+  await expect(page.locator("#softness")).toHaveCSS("appearance", "none");
+  await expect(page.locator("#softness")).toHaveCSS("border-radius", "0px");
   const before = await geometry();
   await clickVisible(page, "[data-language=en]");
   // Capture the whole language transition synchronously: heading-only coverage
@@ -254,6 +278,10 @@ test("language alone scrambles without changing layout; appearance follows syste
   await page.screenshot({ path: "test-results/language-content-scramble.png" });
   await page.waitForTimeout(600);
   await expect(page.locator(".ascii-scramble,[data-ascii]")).toHaveCount(0);
+  const englishWidth = await action.evaluate(
+    (el) => el.getBoundingClientRect().width,
+  );
+  expect(englishWidth).toBeGreaterThan(chineseWidth + 10);
   const after = await geometry();
   expect(after.length).toBe(before.length);
   for (let i = 0; i < before.length; i++)

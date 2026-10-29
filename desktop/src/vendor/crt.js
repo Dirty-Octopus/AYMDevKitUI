@@ -204,10 +204,14 @@ export function initCrtLens(t) {
     const min = Number(range.min || 0),
       max = Number(range.max || 100);
     const step = Number(range.step) || 1;
+    const style = getComputedStyle(range);
+    const halfThumb =
+      parseFloat(style.getPropertyValue("--range-thumb-width")) / 2;
+    const start = rect.left + parseFloat(style.paddingLeft) + halfThumb;
+    const end = rect.right - parseFloat(style.paddingRight) - halfThumb;
     const value =
       min +
-      Math.max(0, Math.min(1, (point.x - rect.left) / rect.width)) *
-        (max - min);
+      Math.max(0, Math.min(1, (point.x - start) / (end - start))) * (max - min);
     range.value = String(min + Math.round((value - min) / step) * step);
     range.dispatchEvent(new Event("input", { bubbles: true }));
   }

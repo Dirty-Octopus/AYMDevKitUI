@@ -196,7 +196,7 @@ body[data-treatment="mono"] {
 .hero > .lead,
 .hero > .muted {
   position: relative;
-  background: var(--bg);
+  background: transparent;
   width: fit-content;
 }
 .module-surface {

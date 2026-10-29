@@ -1,4 +1,4 @@
-// Reserve both translations before swapping text, as in Portfolio's reserveLanguageSpace.
+// Reserve structural copy heights; intrinsic button backgrounds fit the active locale.
 export function reserveLanguageSpace() {
   for (const element of document.querySelectorAll("[data-zh][data-en]")) {
     if (!element.getClientRects().length) continue;
@@ -30,6 +30,7 @@ export function reserveLanguageSpace() {
     });
     element.after(clone);
     let width = 0,
+      activeWidth = 0,
       height = 0;
     for (const [language, text] of [
       ["zh-CN", element.dataset.zh],
@@ -39,11 +40,19 @@ export function reserveLanguageSpace() {
       clone.textContent = text;
       const r = clone.getBoundingClientRect();
       width = Math.max(width, r.width);
+      if (language === document.documentElement.lang) activeWidth = r.width;
       height = Math.max(height, r.height);
     }
     clone.remove();
     if (wrapping) element.style.minHeight = `${Math.ceil(height)}px`;
     else if (
+      element.matches(".actions button[data-zh]") &&
+      !element.closest("#system-dialog")
+    ) {
+      element.dataset.languageSized = "";
+      element.style.minWidth = "0";
+      element.style.width = `${Math.ceil(activeWidth)}px`;
+    } else if (
       !element.closest(".treatments,.appearance-options") &&
       !element.matches(".wide")
     )

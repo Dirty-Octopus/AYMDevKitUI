@@ -19,9 +19,10 @@ The Apple Silicon bundle is `release/mac-arm64/AYM DevKit.app`. It is for local 
 - Fixed identity colors: utility blue `#164BFF`, entertainment yellow `#FFE500`, other red `#F22A30`. True 16 × 16 marks are white on blue/red and black on yellow.
 - SVG curve and quantized inverse pointer mapping, mapped scrolling, an inset content area, CRT bloom, scanlines and configurable softness.
 - Welcome-only ASCII, followed by the source construction timeline and continuous transfer into the actual hero. No completion-triggered text scramble.
+- Flat rectangular sliders use an inset rectangular indicator and matching curved-screen pointer mapping.
 - In-app settings with trigger-to-panel motion, keyboard focus containment, Escape and Command-comma. There is no separate settings window or background music option.
 - All enabled interactive controls play preselection and click cues; the scanner cue belongs only to page changes. Scroll motion settles to 56 px detents with a ruler and clack sound.
-- Chinese and English with an ASCII text transition only on language changes. Both languages are measured using their own locale; controls reserve the larger width and wrapping copy the larger height. Explicit line boxes prevent CJK fallback metrics from changing the layout. Measurements update after font loading, navigation and resizing.
+- Chinese and English with an ASCII text transition only on language changes. Both languages are measured using their own locale; structural controls reserve their dimensions and wrapping copy the larger height. Intrinsic action-button backgrounds interpolate to the active language width over 360 ms. Explicit line boxes prevent CJK fallback metrics from changing the layout. Measurements update after font loading, navigation and resizing.
 - Persisted system/light/dark appearance, defaulting to system. System changes apply live only in system mode. Colors interpolate over 480 ms and respect reduced motion. Classic blue/high-contrast/grayscale treatments remain independent of light/dark appearance.
 
 ## Reference code

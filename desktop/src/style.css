@@ -54,7 +54,8 @@ button {
   clip-path: polygon(11px 0, 100% 0, calc(100% - 11px) 100%, 0 100%);
   transition:
     background-color 0.12s,
-    color 0.12s;
+    color 0.12s,
+    width 360ms cubic-bezier(0.16, 0.82, 0.2, 1);
 }
 button:disabled {
   opacity: 0.45;
@@ -357,6 +358,38 @@ input:not([type="range"]) {
 .range-label input {
   width: 100%;
   accent-color: var(--accent);
+}
+/* The native range remains the hit target; track and thumb stay inside it. */
+input[type="range"] {
+  --range-thumb-width: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 18px;
+  padding: 2px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--edge);
+  box-shadow: none;
+  cursor: ew-resize;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 14px;
+  border: 0;
+  border-radius: 0;
+  background: var(--panel);
+  box-shadow: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--range-thumb-width);
+  height: 10px;
+  margin-top: 2px;
+  border: 0;
+  border-radius: 0;
+  background: var(--accent);
+  box-shadow: none;
 }
 .range-label output {
   margin-left: auto;
