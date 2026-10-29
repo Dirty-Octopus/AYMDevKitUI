@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self' ws://127.0.0.1:1420;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AYM DevKit</title>
+  </head>
+  <body data-treatment="halftone">
+    <svg
+      class="filter-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter
+          id="crt-lens"
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-color="rgb(128,128,0)" result="neutral" />
+          <feImage id="crt-map" preserveAspectRatio="none" result="lens-map" />
+          <feComposite
+            in="lens-map"
+            in2="neutral"
+            operator="over"
+            result="map"
+          />
+          <feDisplacementMap
+            id="crt-displacement"
+            in="SourceGraphic"
+            in2="map"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="0"
+            result="curved-page"
+          />
+          <feImage
+            id="crt-background"
+            x="0"
+            y="0"
+            width="140"
+            height="140"
+            preserveAspectRatio="none"
+            result="background-tile"
+          />
+          <feTile in="background-tile" result="background" />
+          <feMerge>
+            <feMergeNode in="background" />
+            <feMergeNode in="curved-page" />
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+    <div class="native-drag"></div>
+    <div class="crt-surface">
+      <div id="site" class="shell" data-view="overview">
+        <header class="masthead">
+          <div class="wordmark brand-home">
+            <canvas
+              class="pixel-logo"
+              width="16"
+              height="16"
+              data-category="utility"
+            ></canvas
+            ><span>AYM / DEVKIT<small>MACOS INTERFACE SYSTEM</small></span>
+          </div>
+          <div class="header-right header-tools">
+            <span class="status"><i></i> LOCAL / 0.2</span
+            ><button
+              id="system-open"
+              aria-label="打开设置"
+              aria-expanded="false"
+            >
+              <span data-icon>⚙</span
+              ><span data-zh="设置" data-en="SETTINGS">设置</span>
+            </button>
+          </div>
+        </header>
+        <div class="workspace-layout">
+          <aside>
+            <p class="eyebrow navigation-caption">
+              MODULE SELECT <span>01—04</span>
+            </p>
+            <nav>
+              <button class="nav active" data-page="overview">
+                <span>01</span><b data-zh="总览" data-en="OVERVIEW">总览</b
+                ><small>OVERVIEW / MODULE 01</small></button
+              ><button class="nav" data-page="foundations">
+                <span>02</span
+                ><b data-zh="设计基础" data-en="FOUNDATIONS">设计基础</b
+                ><small>FOUNDATIONS / MODULE 02</small></button
+              ><button class="nav" data-page="components">
+                <span>03</span
+                ><b data-zh="交互组件" data-en="COMPONENTS">交互组件</b
+                ><small>COMPONENTS / MODULE 03</small></button
+              ><button class="nav" data-page="panels">
+                <span>04</span
+                ><b data-zh="应用框架" data-en="APP SHELL">应用框架</b
+                ><small>APP SHELL / MODULE 04</small>
+              </button>
+            </nav>
+            <div class="sidebar-foot">
+              ANDY YU<br />DEVELOPMENT KIT<br /><span>RED / YELLOW / BLUE</span>
+            </div>
+          </aside>
+          <main id="main">
+            <div class="module-surface">
+              <div class="module-wipe"></div>
+              <section data-view="overview">
+                <div class="hero">
+                  <div class="hero-art" aria-hidden="true">
+                    <svg
+                      class="banner-strata"
+                      viewBox="0 0 1200 300"
+                      preserveAspectRatio="xMidYMid slice"
+                    >
+                      <path class="strata-base" d="M0 0H1200V300H0Z" />
+                      <g class="strata-far">
+                        <path d="M520 0H1200V300H750L630 180H440L560 60Z" />
+                        <path d="M810 0H880L640 300H570Z" />
+                      </g>
+                      <g class="strata-mid">
+                        <path
+                          d="M930 0H1200V300H680L790 190H930L1050 70H860Z"
+                        />
+                        <path d="M620 0H645L410 300H385Z" />
+                      </g>
+                      <g class="strata-front">
+                        <path
+                          d="M1120 0H1200V300H940L830 190H1020L1090 120H1000Z"
+                        />
+                        <path d="M770 246H975L1029 300H716Z" />
+                      </g>
+                      <path
+                        class="strata-line"
+                        d="M600 20H915L1015 120H1180M490 280H660L790 150H920M745 238H992L1034 280H1180"
+                      />
+                    </svg>
+                  </div>
+                  <p class="eyebrow">01 / OVERVIEW</p>
+                  <h1 class="hero-copy">
+                    BUILT TO<br /><em>FEEL DIFFERENT.</em>
+                  </h1>
+                  <p class="lead">Andy Yu's MacOS Development Kit for UI</p>
+                  <p
+                    class="muted"
+                    data-zh="鲜明的色彩，精确的交互。为独立 macOS 软件准备的一套界面语言。"
+                    data-en="Decisive color. Precise interaction. An interface language for independent macOS software."
+                  ></p>
+                  <div class="actions">
+                    <button
+                      class="primary"
+                      data-goto="components"
+                      data-zh="探索组件 ↗"
+                      data-en="EXPLORE COMPONENTS ↗"
+                    ></button
+                    ><button
+                      id="replay"
+                      data-zh="重播欢迎界面"
+                      data-en="REPLAY WELCOME"
+                    ></button>
+                  </div>
+                </div>
+                <div class="three workspace">
+                  <article class="color-card blue">
+                    <span>01 / UTILITY</span
+                    ><canvas
+                      class="pixel-logo"
+                      width="16"
+                      height="16"
+                      data-category="utility"
+                    ></canvas
+                    ><strong>#164BFF</strong>
+                  </article>
+                  <article class="color-card yellow">
+                    <span>02 / ENTERTAINMENT</span
+                    ><canvas
+                      class="pixel-logo"
+                      width="16"
+                      height="16"
+                      data-category="entertainment"
+                    ></canvas
+                    ><strong>#FFE500</strong>
+                  </article>
+                  <article class="color-card red">
+                    <span>03 / OTHER</span
+                    ><canvas
+                      class="pixel-logo"
+                      width="16"
+                      height="16"
+                      data-category="other"
+                    ></canvas
+                    ><strong>#F22A30</strong>
+                  </article>
+                </div>
+                <div class="section-line">
+                  <span>16 × 16 PIXEL MARKS</span
+                  ><span>ONE COLOR. ONE PURPOSE.</span>
+                </div>
+              </section>
+              <section data-view="foundations" hidden>
+                <p class="eyebrow">02 / FOUNDATIONS</p>
+                <h1>FORM &<br /><em>FUNCTION.</em></h1>
+                <div class="panel">
+                  <h2 data-zh="颜色与标识" data-en="Color & identity"></h2>
+                  <p
+                    data-zh="固定 HEX 背景；纯白 16 × 16 像素前景。"
+                    data-en="Fixed HEX backgrounds. Pure white 16 × 16 pixel foregrounds."
+                  ></p>
+                  <div class="swatches">
+                    <div class="blue">#164BFF</div>
+                    <div class="yellow">#FFE500</div>
+                    <div class="red">#F22A30</div>
+                    <div class="gray">GRAYSCALE</div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <h2>TYPE / SPACE / MOTION</h2>
+                  <p>MONOSPACE · 8 PX GRID · 11 PX CUT</p>
+                  <p
+                    data-zh="设置中可切换原版经典蓝、高对比与灰阶处理。"
+                    data-en="Switch between classic blue, high contrast and grayscale in Settings."
+                  ></p>
+                </div>
+              </section>
+              <section data-view="components" hidden>
+                <p class="eyebrow">03 / COMPONENTS</p>
+                <h1>PRESS.<br /><em>PLAY. REPEAT.</em></h1>
+                <div class="panel">
+                  <h2
+                    data-zh="按钮 / 连续加载"
+                    data-en="Buttons / continuous loading"
+                  ></h2>
+                  <div class="actions">
+                    <button class="primary" id="count-button">
+                      CLICK / <output id="count">0</output></button
+                    ><button
+                      class="yellow"
+                      id="load-button"
+                      data-zh="运行任务"
+                      data-en="RUN TASK"
+                    ></button
+                    ><button disabled>
+                      <span class="spinner"></span> LOADING
+                    </button>
+                  </div>
+                  <p
+                    id="task-status"
+                    aria-live="polite"
+                    data-zh="移动鼠标不会重置加载动画。"
+                    data-en="Hover changes do not reset the loading animation."
+                  ></p>
+                </div>
+                <div class="panel">
+                  <h2 data-zh="输入 / 选择" data-en="Input / selection"></h2>
+                  <label class="field"
+                    >PROJECT NAME<input
+                      id="project-name"
+                      placeholder="Untitled project"
+                      autocomplete="off"
+                  /></label>
+                  <div class="actions">
+                    <button id="demo-toggle" role="switch" aria-checked="true">
+                      ENABLED / ON</button
+                    ><label class="range-label"
+                      >LEVEL <output id="level-value">50</output
+                      ><input
+                        id="level"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="50"
+                    /></label>
+                  </div>
+                </div>
+                <div class="panel">
+                  <h2>SCROLL TEST</h2>
+                  <p
+                    data-zh="滚动、拖动滑块、输入文字与键盘切换焦点均应正常工作。"
+                    data-en="Scroll, drag sliders, type and navigate using the keyboard."
+                  ></p>
+                </div>
+              </section>
+              <section data-view="panels" hidden>
+                <p class="eyebrow">04 / APP SHELL</p>
+                <h1>ONE WINDOW.<br /><em>ALL TOGETHER.</em></h1>
+                <div class="panel">
+                  <h2 data-zh="应用内设置" data-en="In-app settings"></h2>
+                  <p
+                    data-zh="设置从右上角展开，Escape 返回。⌘ , 随时打开设置。"
+                    data-en="Settings expand from the top right. Escape returns. ⌘ , opens Settings."
+                  ></p>
+                  <button
+                    id="settings-example"
+                    data-zh="打开设置"
+                    data-en="OPEN SETTINGS"
+                  ></button>
+                </div>
+                <div class="panel">
+                  <h2>WELCOME / ASCII</h2>
+                  <p
+                    data-zh="ASCII 仅出现在欢迎界面，进入时按原版时间轴构造主界面。"
+                    data-en="ASCII stays on the welcome screen; the source assembly timeline constructs the main interface."
+                  ></p>
+                  <button
+                    id="replay-panel"
+                    data-zh="重播欢迎界面"
+                    data-en="REPLAY WELCOME"
+                  ></button>
+                </div>
+              </section>
+            </div>
+          </main>
+        </div>
+        <footer>
+          <span>AYM DEVKIT / MACOS</span><span id="footer-status">READY</span
+          ><span>UI / 002</span>
+        </footer>
+      </div>
+      <div id="welcome">
+        <div class="boot-face">
+          <canvas id="ascii" class="boot-grid"></canvas>
+          <div class="welcome-content portal-copy">
+            <canvas
+              class="pixel-logo boot-symbol"
+              width="16"
+              height="16"
+              data-category="utility"
+            ></canvas>
+            <p class="eyebrow">ANDY YU'S MACOS DEVELOPMENT KIT FOR UI</p>
+            <h1>MAKE IT<br /><em>YOUR OWN.</em></h1>
+            <p
+              data-zh="一套界面语言，无限种可能。"
+              data-en="One interface language. Endless possibilities."
+            ></p>
+            <button
+              class="primary"
+              id="start"
+              class="primary portal-controls"
+              data-zh="开始使用 ↗"
+              data-en="GET STARTED ↗"
+            ></button
+            ><span class="welcome-meta">16 × 16 / RED · YELLOW · BLUE</span>
+          </div>
+          <div class="portal-visual" aria-hidden="true">
+            <svg
+              class="banner-strata"
+              viewBox="0 0 1200 300"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <path class="strata-base" d="M0 0H1200V300H0Z" />
+              <g class="strata-far">
+                <path d="M520 0H1200V300H750L630 180H440L560 60Z" />
+                <path d="M810 0H880L640 300H570Z" />
+              </g>
+              <g class="strata-mid">
+                <path d="M930 0H1200V300H680L790 190H930L1050 70H860Z" />
+                <path d="M620 0H645L410 300H385Z" />
+              </g>
+              <g class="strata-front">
+                <path d="M1120 0H1200V300H940L830 190H1020L1090 120H1000Z" />
+                <path d="M770 246H975L1029 300H716Z" />
+              </g>
+              <path
+                class="strata-line"
+                d="M600 20H915L1015 120H1180M490 280H660L790 150H920M745 238H992L1034 280H1180"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="system-backdrop" hidden></div>
+      <dialog
+        id="system-dialog"
+        class="system-dialog"
+        aria-labelledby="settings-heading"
+      >
+        <div class="system-emblem"></div>
+        <div class="system-content">
+          <div class="system-titlebar">
+            <h2
+              id="settings-heading"
+              data-zh="界面控制"
+              data-en="INTERFACE CONTROL"
+            ></h2>
+            <button id="system-close" aria-label="关闭设置">×</button>
+          </div>
+          <p class="system-description">AYM DEVKIT / SYSTEM PREFERENCES</p>
+          <div class="system-section">
+            <h3 data-zh="显示处理" data-en="DISPLAY TREATMENT"></h3>
+            <div class="treatments">
+              <button
+                data-treatment="classic"
+                data-zh="经典蓝"
+                data-en="CLASSIC"
+              ></button
+              ><button
+                data-treatment="halftone"
+                data-zh="高对比"
+                data-en="CONTRAST"
+              ></button
+              ><button
+                data-treatment="mono"
+                data-zh="灰阶"
+                data-en="MONO"
+              ></button>
+            </div>
+          </div>
+          <div class="system-section">
+            <h3 data-zh="外观模式" data-en="APPEARANCE"></h3>
+            <div class="appearance-options">
+              <button
+                data-appearance-choice="system"
+                data-zh="跟随系统"
+                data-en="SYSTEM"
+              ></button
+              ><button
+                data-appearance-choice="light"
+                data-zh="浅色"
+                data-en="LIGHT"
+              ></button
+              ><button
+                data-appearance-choice="dark"
+                data-zh="深色"
+                data-en="DARK"
+              ></button>
+            </div>
+          </div>
+          <div class="system-section switches">
+            <label
+              ><span data-zh="界面动效" data-en="INTERFACE MOTION"></span
+              ><button id="motion-toggle" role="switch"></button></label
+            ><label
+              ><span data-zh="交互音效" data-en="INTERFACE SOUND"></span
+              ><button id="sound-toggle" role="switch"></button></label
+            ><label
+              ><span>CRT <small>EXPERIMENTAL</small></span
+              ><button id="crt-toggle" role="switch"></button
+            ></label>
+          </div>
+          <div class="system-section">
+            <label class="range-label"
+              ><span data-zh="屏幕柔化" data-en="SCREEN SOFTNESS"></span
+              ><output id="softness-value">0.20</output
+              ><input
+                id="softness"
+                type="range"
+                min="0"
+                max="0.8"
+                step="0.05"
+                value="0.2"
+            /></label>
+          </div>
+          <div class="system-section">
+            <h3>LANGUAGE / 语言</h3>
+            <div class="actions">
+              <button data-language="zh">简体中文</button
+              ><button data-language="en">ENGLISH</button>
+            </div>
+          </div>
+          <div class="system-section">
+            <button
+              id="reset"
+              class="wide"
+              data-zh="重置全部设置 ↺"
+              data-en="RESET ALL SETTINGS ↺"
+            ></button>
+          </div>
+        </div>
+      </dialog>
+      <div class="screen-bloom"></div>
+      <div class="screen-patina"><canvas id="screen-noise"></canvas></div>
+      <div class="scroll-ruler" aria-hidden="true"><i></i></div>
+    </div>
+    <div id="error" hidden role="alert"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

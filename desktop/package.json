@@ -1,0 +1,44 @@
+{
+  "name": "aym-devkit-desktop",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 1420 --strictPort",
+    "build": "vite build",
+    "test": "node --test tests/*.test.js",
+    "desktop:dev": "electron .",
+    "desktop:build": "npm run build && electron-builder --mac dir --arm64",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56",
+    "electron": "45.1.0",
+    "electron-builder": "^26",
+    "vite": "^7"
+  },
+  "main": "electron.cjs",
+  "description": "Andy Yu's MacOS Development Kit for UI",
+  "author": "Andy Yu",
+  "build": {
+    "appId": "app.aymdevkit.electron",
+    "productName": "AYM DevKit",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.cjs",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "icons/icon.icns",
+      "identity": null
+    }
+  }
+}

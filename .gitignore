@@ -5,3 +5,16 @@ dist/
 .DS_Store
 *.xcuserstate
 *.png.tmp
+
+# Tauri desktop prototype
+node_modules/
+desktop/dist/
+desktop/src-tauri/target/
+desktop/src-tauri/gen/
+desktop/test-results/
+desktop/playwright-report/
+# Local dependency mirror (machine-specific)
+desktop/.cargo/
+desktop/release/
+# Abandoned local Tauri experiment; Electron is the active implementation
+desktop/src-tauri/
