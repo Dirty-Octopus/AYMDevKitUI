@@ -123,7 +123,15 @@ html:not(.crt-mode) .nav:hover:before,
   position: absolute;
   inset: 0;
   color: var(--ascii-ink);
+  box-sizing: border-box;
+  padding: inherit;
+  overflow: hidden;
+  overflow-wrap: anywhere;
   pointer-events: none;
+}
+button.ascii-scramble:after {
+  display: grid;
+  place-content: center;
 }
 .scroll-ruler {
   right: 14px;

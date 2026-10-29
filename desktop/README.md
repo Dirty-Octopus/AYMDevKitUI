@@ -36,7 +36,7 @@ The user-authorized reference is the author's `Portfolio4Music_副本` repositor
 | `vendor/crt.js` | Original displacement image and inverse coordinates; AYM storage key and mapped wheel dispatch added. |
 | `vendor/background.js` | Source 140 px grain, dot texture and pointer parallax; light texture added. |
 | `vendor/tactile.js` | Source scroll and screen-noise functions, using the main application scroll container. |
-| `vendor/text-transition.js` | Original ASCII text transition, invoked only by language changes. |
+| `vendor/text-transition.js` | Source ASCII timing, extended to all visible bilingual prose, controls and labels without a text-length cutoff; invoked only by language changes. |
 | `vendor/reference.css`, `replica.css` | Source navigation geometry, scroll ruler and SVG strata styling, adapted to the vertical application sidebar. |
 
 Fonts use the source Barlow Condensed 500/600 and IBM Plex Mono 400 packages. Five interface WAVs are copied from the reference; no portfolio media catalogue is included. Fullscreen terrain/media functionality is outside this component gallery. The abandoned Tauri experiment is ignored locally and is not an Electron dependency.

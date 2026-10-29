@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 async function clickVisible(page, selector) {
+  await page.evaluate(() => document.fonts.ready);
   const point = await page.locator(selector).evaluate(async (el) => {
     const { lensDisplayPoint } = await import("/src/vendor/crt.js");
     const r = el.getBoundingClientRect();
@@ -227,8 +228,32 @@ test("language alone scrambles without changing layout; appearance follows syste
     );
   const before = await geometry();
   await clickVisible(page, "[data-language=en]");
-  await expect(page.locator(".ascii-scramble").first()).toBeAttached();
+  // Capture the whole language transition synchronously: heading-only coverage
+  // must not pass when prose, buttons or settings labels are omitted.
+  const coverage = await page.evaluate(() =>
+    [...document.querySelectorAll("[data-zh][data-en]")]
+      .filter(
+        (el) =>
+          el.getClientRects().length &&
+          !el.children.length &&
+          el.textContent.trim(),
+      )
+      .map((el) => ({
+        tag: el.tagName,
+        text: el.textContent,
+        active: el.classList.contains("ascii-scramble"),
+        frame: el.dataset.ascii,
+      })),
+  );
+  expect(coverage.some((el) => el.tag === "P" && el.text.length > 48)).toBe(
+    true,
+  );
+  expect(coverage.some((el) => el.tag === "BUTTON")).toBe(true);
+  expect(coverage.some((el) => el.tag === "SPAN")).toBe(true);
+  expect(coverage.every((el) => el.active && el.frame)).toBe(true);
+  await page.screenshot({ path: "test-results/language-content-scramble.png" });
   await page.waitForTimeout(600);
+  await expect(page.locator(".ascii-scramble,[data-ascii]")).toHaveCount(0);
   const after = await geometry();
   expect(after.length).toBe(before.length);
   for (let i = 0; i < before.length; i++)

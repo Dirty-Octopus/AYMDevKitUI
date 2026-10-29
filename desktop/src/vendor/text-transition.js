@@ -17,13 +17,14 @@ export function scrambleText(root = document) {
   )
     return;
   root
-    .querySelectorAll("h2,h3,#module-path,#workspace-label,.nav b")
+    .querySelectorAll(
+      "[data-zh][data-en],h2,h3,#module-path,#workspace-label,.nav b",
+    )
     .forEach((element, index) => {
       const text = element.textContent;
       if (
         element.children.length ||
         !text.trim() ||
-        text.length > 48 ||
         !element.getClientRects().length
       )
         return;
