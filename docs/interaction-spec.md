@@ -161,8 +161,9 @@ switches instantly.
 - Pointer movement creates trail points (throttled to 25ms / 2.5pt). Each point
   becomes a local wake in the same cell grid, so nearby code glyphs switch to the
   trail alphabet and the accent hue instead of a second trail being drawn on
-  top. Trail glyphs use three size tiers (8.5 / 11 / 13.5pt) selected by wake
-  strength, so the trail shrinks as it decays over 0.9s.
+  top. Each trail point’s influence radius decays with age (2.8 cells near the
+  pointer to 0.8 cells at the tail) while the glyph size stays constant, so the
+  trail’s footprint shrinks over 0.9s.
 - Ripples and trail points do not block clicks, change layout or affect
   accessibility.
 

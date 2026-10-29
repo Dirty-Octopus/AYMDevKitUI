@@ -62,7 +62,7 @@ opacity (`1.0` default, `0.42` in settings).
 
 The animated dense code field on its own. Use only as a background layer; it is
 non-interactive and hidden from accessibility. Characters re-roll on a staggered
-clock. Pointer movement writes a size-decaying wake through the shared
+clock. Pointer movement writes a radius-decaying wake through the shared
 `DKAmbient`; clicks add expanding rings with their own alphabet. Neither
 interaction blocks hit testing.
 

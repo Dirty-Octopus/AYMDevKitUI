@@ -332,10 +332,8 @@ public struct DKASCIIField: View {
         let rippleGlyphs = DKASCIIAtlas.images(for: Self.rippleAlphabet, color: peakColor, size: monoSize).map {
             context.resolve($0)
         }
-        let trailGlyphs: [[GraphicsContext.ResolvedImage]] = Self.trailSizes.map { size in
-            DKASCIIAtlas.images(for: Self.trailAlphabet, color: peakColor, size: size).map {
-                context.resolve($0)
-            }
+        let trailGlyphs = DKASCIIAtlas.images(for: Self.trailAlphabet, color: peakColor, size: monoSize).map {
+            context.resolve($0)
         }
 
         // Pointer wake: rasterised into the same grid as the field. Stronger
@@ -348,7 +346,10 @@ public struct DKASCIIField: View {
             let fade = 1 - age / 0.9
             let centreX = (point.center.x * size.width - originX) / cell.width
             let centreY = (point.center.y * size.height - originY) / cell.height
-            let radius = 2.8
+            // The trail's influence radius decays with age; glyph size stays
+            // constant. Newer points warm a wider ring of cells, older points a
+            // tighter one.
+            let radius = 0.8 + 2.0 * fade
 
             let minColumn = max(0, Int(floor(centreX - radius)))
             let maxColumn = min(columns - 1, Int(ceil(centreX + radius)))
@@ -416,7 +417,6 @@ public struct DKASCIIField: View {
                 )
 
                 if isWake {
-                    let tier = wakeValue > 0.60 ? 2 : (wakeValue > 0.26 ? 1 : 0)
                     let index = Self.interactionIndex(
                         row: row,
                         column: column,
@@ -424,7 +424,7 @@ public struct DKASCIIField: View {
                         count: Self.trailAlphabet.count
                     )
                     context.opacity = (0.30 + 0.28 * min(wakeValue, 1)) * intensity
-                    context.draw(trailGlyphs[tier][index], at: point, anchor: .center)
+                    context.draw(trailGlyphs[index], at: point, anchor: .center)
                 } else if isRipple {
                     let index = Self.interactionIndex(
                         row: row,
@@ -468,8 +468,6 @@ public struct DKASCIIField: View {
         let phase = Double((row &* 37 &+ column &* 91) % 145) / 100.0
         return Int((time + phase) / 1.35)
     }
-
-    private static let trailSizes: [CGFloat] = [8.5, 11, 13.5]
 
     private static let rippleAlphabet: [String] = ["~", "=", "+", "*", "#"]
     private static let trailAlphabet: [String] = ["0", "1", "2", "<", ">", "/"]

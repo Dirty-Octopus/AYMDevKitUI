@@ -158,16 +158,18 @@ Rules:
 - Surface: two travelling sine waves crossing at different angles.
 - Depth: `DKNoise.fbm(x, y, octaves: 3)` — deterministic Perlin noise.
 - Crests: brighten the baseline glyph in the primary hue. Water is not an
-  interaction, so it does not introduce the accent colour.
+  interaction, so it does not introduce the accent colour. The field itself is
+  monochrome per appearance; only click rings and the hover wake bring in the
+  accent.
 - Click ripple: a normalised centre plus timestamp; the field draws an expanding
   ring (`radius = age × 0.42`, band width 0.07) for 2.4 seconds using a dedicated
   ripple alphabet (`~ = + * #`) and the accent hue.
 - Hover trail: pointer points are stored at most every 25ms and 2.5pt of
   movement, then rasterised into a wake map with a 2.8-cell radius. There is no
   separate trail view; the wake is part of the same character field. Trail cells
-  use the trail alphabet (`0 1 2 < > /`), the accent hue, and three glyph tiers
-  (8.5 / 11 / 13.5pt) selected by wake strength, so the trail visibly shrinks as
-  it decays.
+  use the trail alphabet (`0 1 2 < > /`) and the accent hue. The influence
+  radius per trail point decays with age (2.8 cells near the pointer to 0.8 at
+  the tail); the glyph size is constant, so only the footprint shrinks.
 - Timing: 6fps idle, 12fps while the trail or a ripple is active. Paused when
   the window is inactive or Reduce Motion is enabled.
 - Intensity: `1.0` in the welcome/gallery, `0.42` in Settings. Pass

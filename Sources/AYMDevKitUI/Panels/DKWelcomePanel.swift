@@ -113,16 +113,36 @@ public struct DKWelcomePanel: View {
 
             GeometryReader { proxy in
                 ZStack {
+                    // Radial gradients instead of `.blur`: soft shapes survive
+                    // appearance switches and are cheaper to composite.
                     Circle()
-                        .fill(theme.brand.primary.opacity(theme.isDark ? 0.30 : 0.18))
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    theme.brand.primary.opacity(theme.isDark ? 0.60 : 0.40),
+                                    .clear
+                                ],
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: 165
+                            )
+                        )
                         .frame(width: 300, height: 300)
-                        .blur(radius: 42)
                         .offset(x: proxy.size.width * 0.55, y: -90)
 
                     Circle()
-                        .fill(theme.brand.secondary.opacity(theme.isDark ? 0.20 : 0.12))
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    theme.brand.secondary.opacity(theme.isDark ? 0.45 : 0.28),
+                                    .clear
+                                ],
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: 135
+                            )
+                        )
                         .frame(width: 240, height: 240)
-                        .blur(radius: 46)
                         .offset(x: -70, y: proxy.size.height - 60)
                 }
             }

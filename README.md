@@ -102,8 +102,9 @@ The full catalogue is in [`docs/components.md`](./docs/components.md). At a glan
 - A 10 × 10pt grid of monospaced code glyphs (8.5pt). The baseline is drawn one text row per scanline, which keeps the field dense without thousands of text layouts.
 - **The characters themselves move.** Every cell re-rolls its glyph on a staggered 1.35s clock; the ambient field is never static. Baseline colour stays in the primary brand hue.
 - The water surface is two crossing travelling sine waves; depth comes from three octaves of deterministic 2D Perlin noise (`DKNoise`). Crests brighten without changing hue.
-- **Hover is a wake in the field, not a separate overlay.** Pointer points are rasterised into the same grid; neighbouring cells switch to the trail alphabet and the accent hue, and the wake scales from 8.5pt at its tail to 13.5pt near the pointer — a size decay, not a flat line.
+- **Hover is a wake in the field, not a separate overlay.** Pointer points are rasterised into the same grid; neighbouring cells switch to the trail alphabet and the accent hue, and the wake’s influence radius decays with age (2.8 cells near the pointer down to 0.8 cells at the tail) while the glyph size stays constant.
 - **Click is a different interaction.** A tap (`.dkAmbientRipples()`, applied by `DKAppRoot`) creates an expanding ring that uses its own ripple alphabet and accent hue for 2.4s.
+- The field is monochrome per appearance: its own colour is always the primary hue. The accent colour enters only through a click ring or the hover wake.
 - The field runs at 6 fps while idle and 12 fps while moving or rippling, uses `Canvas`, and pauses when the window is inactive or Reduce Motion is on. `DKAppRoot(backgroundFieldIntensity:)` can lower or disable it.
 
 ## Requirements
