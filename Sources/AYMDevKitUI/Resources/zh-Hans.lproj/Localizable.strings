@@ -1,0 +1,71 @@
+/* AYMDevKitUI — 简体中文文案。欢迎页、设置页与组件共用同一套 key。 */
+
+"common.browse" = "浏览…";
+"common.clear" = "清除";
+"common.close" = "关闭";
+"common.copied" = "已复制";
+"common.copy" = "复制";
+"common.search" = "搜索";
+
+"dropzone.title" = "把文件拖到这里";
+"dropzone.subtitle" = "松开即可添加到当前窗口";
+
+"menu.aboutApp" = "关于 %@";
+"menu.appearance" = "外观";
+"menu.language" = "语言";
+"menu.resetWelcome" = "重新显示欢迎页";
+"menu.settings" = "设置…";
+"menu.view" = "视图";
+
+"appearance.system" = "跟随系统";
+"appearance.system.subtitle" = "跟随 macOS";
+"appearance.light" = "浅色";
+"appearance.light.subtitle" = "始终使用浅色";
+"appearance.dark" = "深色";
+"appearance.dark.subtitle" = "始终使用深色";
+
+"window.compact" = "紧凑";
+"window.compact.subtitle" = "适合较小的屏幕";
+"window.standard" = "标准";
+"window.standard.subtitle" = "默认工作区";
+"window.large" = "大";
+"window.large.subtitle" = "为细节留出更多空间";
+
+"language.english.subtitle" = "使用英文界面";
+"language.chinese.subtitle" = "使用中文界面";
+
+"welcome.title" = "欢迎使用 %@";
+"welcome.subtitle" = "从这里开始。先完成基本设置，之后随时可以在设置中修改。";
+"welcome.setup.eyebrow" = "设置";
+"welcome.setup.title" = "按你的习惯开始";
+"welcome.language.title" = "语言";
+"welcome.language.subtitle" = "选择你希望使用的界面语言。";
+"welcome.appearance.title" = "外观";
+"welcome.appearance.subtitle" = "跟随系统，或选择浅色、深色。";
+"welcome.window.title" = "窗口尺寸";
+"welcome.window.subtitle" = "选择初始尺寸，之后可以随时拉伸窗口。";
+"welcome.ready.title" = "准备就绪";
+"welcome.footnote" = "以上选项之后都可以在设置中修改。";
+"welcome.start" = "开始使用";
+"welcome.highlight.1" = "所有窗口使用同一套视觉语言";
+"welcome.highlight.2" = "欢迎页与设置页在任何应用中都保持一致";
+"welcome.highlight.3" = "原生 macOS 控件、动效与无障碍支持";
+
+"settings.title" = "设置";
+"settings.language.title" = "界面语言";
+"settings.language.subtitle" = "切换后立即生效。";
+"settings.appearance.title" = "外观";
+"settings.appearance.subtitle" = "跟随系统，或为此应用指定外观。";
+"settings.window.title" = "窗口尺寸";
+"settings.window.subtitle" = "选择初始尺寸，窗口仍可自由拉伸。";
+"settings.about.title" = "关于";
+"settings.about.subtitle" = "版本与构建信息。";
+"settings.about.version" = "版本";
+"settings.about.build" = "构建";
+"settings.about.bundle" = "Bundle ID";
+"settings.about.license" = "许可证";
+"settings.about.website" = "网站";
+"settings.about.repository" = "仓库";
+"settings.resetWelcome" = "显示欢迎页";
+"settings.resetWelcome.title" = "欢迎面板";
+"settings.resetWelcome.subtitle" = "再次显示首次启动时的面板。";

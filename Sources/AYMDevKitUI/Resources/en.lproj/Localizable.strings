@@ -1,0 +1,71 @@
+/* AYMDevKitUI — English copy. Keys are shared by the welcome panel, settings panel and components. */
+
+"common.browse" = "Browse…";
+"common.clear" = "Clear";
+"common.close" = "Close";
+"common.copied" = "Copied";
+"common.copy" = "Copy";
+"common.search" = "Search";
+
+"dropzone.title" = "Drop files here";
+"dropzone.subtitle" = "Release to add them to this window";
+
+"menu.aboutApp" = "About %@";
+"menu.appearance" = "Appearance";
+"menu.language" = "Language";
+"menu.resetWelcome" = "Show Welcome Again";
+"menu.settings" = "Settings…";
+"menu.view" = "View";
+
+"appearance.system" = "System";
+"appearance.system.subtitle" = "Follow macOS";
+"appearance.light" = "Light";
+"appearance.light.subtitle" = "Always light";
+"appearance.dark" = "Dark";
+"appearance.dark.subtitle" = "Always dark";
+
+"window.compact" = "Compact";
+"window.compact.subtitle" = "For smaller displays";
+"window.standard" = "Standard";
+"window.standard.subtitle" = "The default workspace";
+"window.large" = "Large";
+"window.large.subtitle" = "More room for detail";
+
+"language.english.subtitle" = "Continue in English";
+"language.chinese.subtitle" = "使用中文界面";
+
+"welcome.title" = "Welcome to %@";
+"welcome.subtitle" = "A consistent place to start. Set up the essentials once, then change them any time in Settings.";
+"welcome.setup.eyebrow" = "Setup";
+"welcome.setup.title" = "Make it yours";
+"welcome.language.title" = "Language";
+"welcome.language.subtitle" = "Pick the language you want to work in.";
+"welcome.appearance.title" = "Appearance";
+"welcome.appearance.subtitle" = "Match the system, or choose light or dark.";
+"welcome.window.title" = "Window size";
+"welcome.window.subtitle" = "Choose a starting size. You can resize the window later.";
+"welcome.ready.title" = "Ready when you are";
+"welcome.footnote" = "Everything here can be changed later in Settings.";
+"welcome.start" = "Get started";
+"welcome.highlight.1" = "One visual language across every window";
+"welcome.highlight.2" = "The same welcome and settings flow everywhere";
+"welcome.highlight.3" = "Native macOS controls, motion and accessibility";
+
+"settings.title" = "Settings";
+"settings.language.title" = "Language";
+"settings.language.subtitle" = "The interface language changes immediately.";
+"settings.appearance.title" = "Appearance";
+"settings.appearance.subtitle" = "Follow the system or force a look for this app.";
+"settings.window.title" = "Window size";
+"settings.window.subtitle" = "Pick a starting size. The window stays freely resizable.";
+"settings.about.title" = "About";
+"settings.about.subtitle" = "Version and build information.";
+"settings.about.version" = "Version";
+"settings.about.build" = "Build";
+"settings.about.bundle" = "Bundle ID";
+"settings.about.license" = "License";
+"settings.about.website" = "Website";
+"settings.about.repository" = "Repository";
+"settings.resetWelcome" = "Show welcome";
+"settings.resetWelcome.title" = "Welcome panel";
+"settings.resetWelcome.subtitle" = "Show the first-run panel again.";
