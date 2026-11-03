@@ -17,7 +17,7 @@ npm run desktop:dev
 
 ## 共享 Runtime 安装包
 
-提供可选的 [共享 Runtime 打包与安装流程](desktop/shared-runtime/README.md)。软件统一安装到 `/Applications/Andy Yu/`；首次安装从本仓库 GitHub Releases 下载并校验 Runtime，后续兼容应用直接复用。每个应用仍有独立进程和数据，Framework 文件通过硬链接共享实际磁盘空间。当前产物是未公证的 Apple Silicon 开发预览版，正式分发仍需 Developer ID 签名与公证。
+提供可选的 [共享 Runtime 打包与安装流程](desktop/shared-runtime/README.md)。软件统一安装到 `/Applications/Andy Yu/`；首次安装从本仓库 GitHub Releases 下载并校验 Runtime，后续兼容应用直接复用。每个应用仍有独立进程和数据，Framework 文件通过硬链接共享实际磁盘空间。可下载 [Apple Silicon 开发预览版](https://github.com/Dirty-Octopus/AYMDevKitUI/releases/tag/runtime-45.1.0-arm64-preview)，当前尚未公证，正式分发仍需 Developer ID 签名与公证。
 
 ## 已实现
 

@@ -49,3 +49,5 @@ The reference motion, generated background and interface sounds were ported from
 ## Shared-runtime installer
 
 The optional [shared-runtime packaging flow](desktop/shared-runtime/README.md) installs independent apps in `/Applications/Andy Yu/`, downloads a pinned runtime from GitHub Releases when missing, and reuses its physical files through hard links. The current Apple Silicon preview is not notarized; consumer distribution requires Developer ID signing and notarization.
+
+[Download the Apple Silicon developer preview](https://github.com/Dirty-Octopus/AYMDevKitUI/releases/tag/runtime-45.1.0-arm64-preview).

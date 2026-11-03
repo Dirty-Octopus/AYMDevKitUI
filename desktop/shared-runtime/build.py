@@ -147,7 +147,7 @@ def build(source, output, identity='-', installer_identity=None, runtime_from=No
     # thin archive and reconstructs the original, fully signed/notarized app.
     run('pkgbuild', '--nopayload', '--identifier', info['CFBundleIdentifier'] + '.shared-runtime',
         '--version', info.get('CFBundleShortVersionString', '1.0'), '--scripts', scripts, component)
-    product = output / f'{source.stem}-Shared-{arch}{"-Preview" if identity == "-" else ""}.pkg'
+    product = output / f'{source.stem.replace(chr(32), chr(46))}-Shared-{arch}{"-Preview" if identity == "-" else ""}.pkg'
     requirements = output / 'requirements.plist'
     requirements.write_bytes(plistlib.dumps({'os': ['13.0'], 'arch': [archs]}))
     sign = ['--sign', installer_identity] if installer_identity else []
