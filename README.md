@@ -45,3 +45,7 @@ Tests cover the curve's coordinate inverse, preferences, physical-pointer intera
 - `docs/`: historical SwiftUI documentation and screenshots; these do not represent the current Electron design.
 
 The reference motion, generated background and interface sounds were ported from the author's Portfolio project. No portfolio video/audio catalogue is included. See `desktop/README.md` for source mappings and adaptations.
+
+## Shared-runtime installer
+
+The optional [shared-runtime packaging flow](desktop/shared-runtime/README.md) installs independent apps in `/Applications/Andy Yu/`, downloads a pinned runtime from GitHub Releases when missing, and reuses its physical files through hard links. The current Apple Silicon preview is not notarized; consumer distribution requires Developer ID signing and notarization.
